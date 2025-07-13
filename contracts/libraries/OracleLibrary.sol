@@ -166,7 +166,7 @@ library OracleLibrary {
     /// @param ticks The ticks, representing the price of each token pair in `tokens`
     /// @return syntheticTick The synthetic tick, representing the relative price of the outermost tokens in `tokens`
     function getChainedPrice(address[] memory tokens, int24[] memory ticks)
-        internal
+    public
         pure
         returns (int256 syntheticTick)
     {
@@ -175,6 +175,6 @@ library OracleLibrary {
             // check the tokens for address sort order, then accumulate the
             // ticks into the running synthetic tick, ensuring that intermediate tokens "cancel out"
             tokens[i - 1] < tokens[i] ? syntheticTick += ticks[i - 1] : syntheticTick -= ticks[i - 1];
-        }
+        } 
     }
 }
